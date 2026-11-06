@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { type Offer } from '../../types/offer';
+import Map from '../map/map';
 import OffersList from '../offers-list/offers-list';
 
 type MainPageProps = {
@@ -10,7 +12,7 @@ const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseld
 
 function MainPage({ offers }: MainPageProps) {
   const currentCity = offers[0]?.city ?? cities[0];
-  const cityOffers = offers.filter((offer) => offer.city === currentCity);
+  const cityOffers = useMemo(() => offers.filter((offer) => offer.city === currentCity), [currentCity, offers]);
 
   return (
     <div className="page page--gray page--main">
@@ -76,7 +78,7 @@ function MainPage({ offers }: MainPageProps) {
                 </div>
               )}
             </section>
-            <div className="cities__right-section"><section className="cities__map map" /></div>
+            <div className="cities__right-section"><Map offers={cityOffers} /></div>
           </div>
         </div>
       </main>
