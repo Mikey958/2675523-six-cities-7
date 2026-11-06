@@ -10,6 +10,10 @@ export type Offer = {
   isFavorite: boolean;
   previewImage: string;
   city: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
   images: string[];
   description: string[];
   bedrooms: number;

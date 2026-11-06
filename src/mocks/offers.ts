@@ -10,7 +10,11 @@ const offers: Offer[] = [
     isPremium: true,
     isFavorite: true,
     previewImage: 'apartment-01.jpg',
-    city: 'Paris',
+    city: 'Amsterdam',
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+    },
     images: ['apartment-01.jpg', 'apartment-02.jpg', 'apartment-03.jpg', 'studio-01.jpg'],
     description: [
       'A quiet, cozy and picturesque apartment in the heart of Paris, close to the city’s best cafés and museums.',
@@ -34,7 +38,11 @@ const offers: Offer[] = [
     isPremium: false,
     isFavorite: false,
     previewImage: 'room.jpg',
-    city: 'Paris',
+    city: 'Amsterdam',
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+    },
     images: ['room.jpg', 'room-small.jpg', 'studio-01.jpg'],
     description: [
       'A warm private room with wooden details in a quiet residential neighborhood.',
@@ -59,6 +67,10 @@ const offers: Offer[] = [
     isFavorite: true,
     previewImage: 'apartment-02.jpg',
     city: 'Amsterdam',
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+    },
     images: ['apartment-02.jpg', 'apartment-01.jpg', 'studio-01.jpg'],
     description: [
       'Enjoy a calm stay in this apartment overlooking one of Amsterdam’s beautiful canals.',
@@ -82,7 +94,11 @@ const offers: Offer[] = [
     isPremium: true,
     isFavorite: true,
     previewImage: 'apartment-03.jpg',
-    city: 'Cologne',
+    city: 'Amsterdam',
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+    },
     images: ['apartment-03.jpg', 'apartment-01.jpg', 'apartment-02.jpg'],
     description: [
       'A spacious, light-filled apartment with elegant interiors near the center of Cologne.',
