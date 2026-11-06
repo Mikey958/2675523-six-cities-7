@@ -1,14 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
 import { type Offer } from '../../types/offer';
+import { type Review } from '../../types/review';
 import NotFoundPage from '../not-found-page/not-found-page';
-import PlaceCard from '../place-card/place-card';
+import Map from '../map/map';
+import OffersList from '../offers-list/offers-list';
 import ReviewForm from '../review-form/review-form';
+import ReviewsList from '../reviews-list/reviews-list';
 
 type OfferPageProps = {
   offers: Offer[];
+  reviews: Review[];
 };
 
-function OfferPage({ offers }: OfferPageProps) {
+function OfferPage({ offers, reviews }: OfferPageProps) {
   const { id } = useParams();
   const offer = offers.find((item) => item.id === id);
 
@@ -18,7 +22,11 @@ function OfferPage({ offers }: OfferPageProps) {
 
   const ratingWidth = Math.round(offer.rating) * 20;
   const offerTypeLabel = `${offer.type[0].toUpperCase()}${offer.type.slice(1)}`;
-  const nearbyOffers = offers.filter((item) => item.id !== offer.id).slice(0, 3);
+  const nearbyOffers = offers
+    .filter((item) => item.city === offer.city && item.id !== offer.id)
+    .slice(0, 3);
+  const offerReviews = reviews.filter((review) => review.offerId === offer.id);
+  const mapOffers = [offer, ...nearbyOffers];
 
   return (
     <div className="page">
@@ -111,41 +119,17 @@ function OfferPage({ offers }: OfferPageProps) {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="/markup/img/avatar-max.jpg" width="54" height="54" alt="Max avatar" />
-                      </div>
-                      <span className="reviews__user-name">Max</span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{ width: '80%' }} />
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">{offer.description[0]}</p>
-                      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                    </div>
-                  </li>
-                </ul>
+                <ReviewsList reviews={offerReviews} />
                 <ReviewForm />
               </section>
             </div>
           </div>
-          <section className="offer__map map" />
+          <Map offers={mapOffers} activeOfferId={offer.id} className="offer__map map" />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {nearbyOffers.map((nearbyOffer) => (
-                <PlaceCard offer={nearbyOffer} cardType="near-places" key={nearbyOffer.id} />
-              ))}
-            </div>
+            <OffersList offers={nearbyOffers} cardType="near-places" />
           </section>
         </div>
       </main>

@@ -6,12 +6,14 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import OfferPage from '../offer-page/offer-page';
 import PrivateRoute from '../private-route/private-route';
 import { type Offer } from '../../types/offer';
+import { type Review } from '../../types/review';
 
 type AppProps = {
   offers: Offer[];
+  reviews: Review[];
 };
 
-function App({ offers }: AppProps) {
+function App({ offers, reviews }: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -25,7 +27,7 @@ function App({ offers }: AppProps) {
             </PrivateRoute>
           }
         />
-        <Route path="/offer/:id" element={<OfferPage offers={offers} />} />
+        <Route path="/offer/:id" element={<OfferPage offers={offers} reviews={reviews} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
