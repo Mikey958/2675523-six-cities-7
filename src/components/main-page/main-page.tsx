@@ -1,17 +1,18 @@
 import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { type Offer } from '../../types/offer';
+import { changeCity } from '../../store/action';
+import { type AppDispatch, type RootState } from '../../store';
+import CitiesList from '../cities-list/cities-list';
 import Map from '../map/map';
 import OffersList from '../offers-list/offers-list';
 
-type MainPageProps = {
-  offers: Offer[];
-};
-
 const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-function MainPage({ offers }: MainPageProps) {
-  const currentCity = offers[0]?.city ?? cities[0];
+function MainPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const currentCity = useSelector((state: RootState) => state.city);
+  const offers = useSelector((state: RootState) => state.offers);
   const cityOffers = useMemo(() => offers.filter((offer) => offer.city === currentCity), [currentCity, offers]);
 
   return (
@@ -44,15 +45,11 @@ function MainPage({ offers }: MainPageProps) {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {cities.map((city) => (
-                <li className="locations__item" key={city}>
-                  <a className={`locations__item-link tabs__item${city === currentCity ? ' tabs__item--active' : ''}`} href="#">
-                    <span>{city}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <CitiesList
+              cities={cities}
+              currentCity={currentCity}
+              onCityClick={(city) => dispatch(changeCity(city))}
+            />
           </section>
         </div>
         <div className="cities">

@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import FavoritesPage from '../favorites-page/favorites-page';
 import LoginPage from '../login-page/login-page';
@@ -5,19 +6,20 @@ import MainPage from '../main-page/main-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import OfferPage from '../offer-page/offer-page';
 import PrivateRoute from '../private-route/private-route';
-import { type Offer } from '../../types/offer';
+import { type RootState } from '../../store';
 import { type Review } from '../../types/review';
 
 type AppProps = {
-  offers: Offer[];
   reviews: Review[];
 };
 
-function App({ offers, reviews }: AppProps) {
+function App({ reviews }: AppProps) {
+  const offers = useSelector((state: RootState) => state.offers);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage offers={offers} />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/favorites"

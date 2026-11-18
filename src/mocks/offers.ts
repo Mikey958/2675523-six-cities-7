@@ -10,10 +10,10 @@ const offers: Offer[] = [
     isPremium: true,
     isFavorite: true,
     previewImage: 'apartment-01.jpg',
-    city: 'Amsterdam',
+    city: 'Paris',
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.8566,
+      longitude: 2.3522,
     },
     images: ['apartment-01.jpg', 'apartment-02.jpg', 'apartment-03.jpg', 'studio-01.jpg'],
     description: [
@@ -38,10 +38,10 @@ const offers: Offer[] = [
     isPremium: false,
     isFavorite: false,
     previewImage: 'room.jpg',
-    city: 'Amsterdam',
+    city: 'Paris',
     location: {
-      latitude: 52.3609553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.8647,
+      longitude: 2.3490,
     },
     images: ['room.jpg', 'room-small.jpg', 'studio-01.jpg'],
     description: [
@@ -94,10 +94,10 @@ const offers: Offer[] = [
     isPremium: true,
     isFavorite: true,
     previewImage: 'apartment-03.jpg',
-    city: 'Amsterdam',
+    city: 'Cologne',
     location: {
-      latitude: 52.3809553943508,
-      longitude: 4.939309666406198,
+      latitude: 50.9375,
+      longitude: 6.9603,
     },
     images: ['apartment-03.jpg', 'apartment-01.jpg', 'apartment-02.jpg'],
     description: [
